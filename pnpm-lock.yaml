@@ -9,25 +9,25 @@ importers:
   .:
     dependencies:
       '@srmico/dsh-tinfoil-audio':
-        specifier: 0.1.1-rc.1
+        specifier: 0.1.1
         version: link:packages/dsh-tinfoil-audio
       '@srmico/dsh-tinfoil-decisions':
-        specifier: 0.1.1-rc.1
+        specifier: 0.1.1
         version: link:packages/dsh-tinfoil-decisions
       '@srmico/dsh-tinfoil-documents':
-        specifier: 0.1.1-rc.1
+        specifier: 0.1.1
         version: link:packages/dsh-tinfoil-documents
       '@srmico/dsh-tinfoil-pii':
-        specifier: 0.1.1-rc.1
+        specifier: 0.1.1
         version: link:packages/dsh-tinfoil-pii
       '@srmico/dsh-tinfoil-provider':
-        specifier: 0.1.1-rc.1
+        specifier: 0.1.1
         version: link:packages/dsh-tinfoil-provider
       '@srmico/dsh-tinfoil-verification':
-        specifier: 0.1.1-rc.1
+        specifier: 0.1.1
         version: link:packages/dsh-tinfoil-verification
       '@srmico/dsh-tinfoil-web':
-        specifier: 0.1.1-rc.1
+        specifier: 0.1.1
         version: link:packages/dsh-tinfoil-web
     devDependencies:
       tsdown:

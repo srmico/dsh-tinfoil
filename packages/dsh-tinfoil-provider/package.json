@@ -1,6 +1,6 @@
 {
   "name": "@srmico/dsh-tinfoil-provider",
-  "version": "0.1.1-rc.1",
+  "version": "0.1.1",
   "description": "Tinfoil model provider plugin for DeepSeek Harness",
   "type": "module",
   "license": "MIT",

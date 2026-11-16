@@ -1,6 +1,6 @@
 {
   "name": "@srmico/dsh-tinfoil",
-  "version": "0.1.1-rc.1",
+  "version": "0.1.1",
   "description": "Tinfoil integration bundles for DeepSeek Harness",
   "type": "module",
   "license": "MIT",
@@ -35,13 +35,13 @@
     "dsh": ">=0.2.2-rc.1 <0.3.0"
   },
   "dependencies": {
-    "@srmico/dsh-tinfoil-audio": "0.1.1-rc.1",
-    "@srmico/dsh-tinfoil-decisions": "0.1.1-rc.1",
-    "@srmico/dsh-tinfoil-documents": "0.1.1-rc.1",
-    "@srmico/dsh-tinfoil-pii": "0.1.1-rc.1",
-    "@srmico/dsh-tinfoil-provider": "0.1.1-rc.1",
-    "@srmico/dsh-tinfoil-verification": "0.1.1-rc.1",
-    "@srmico/dsh-tinfoil-web": "0.1.1-rc.1"
+    "@srmico/dsh-tinfoil-audio": "0.1.1",
+    "@srmico/dsh-tinfoil-decisions": "0.1.1",
+    "@srmico/dsh-tinfoil-documents": "0.1.1",
+    "@srmico/dsh-tinfoil-pii": "0.1.1",
+    "@srmico/dsh-tinfoil-provider": "0.1.1",
+    "@srmico/dsh-tinfoil-verification": "0.1.1",
+    "@srmico/dsh-tinfoil-web": "0.1.1"
   },
   "devDependencies": {
     "tsdown": "^0.23.7",
