@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Tinfoil verification",
+    "description": "Shows the live Tinfoil verification center and a composer status-bar attestation lock for the Tinfoil integration plugins."
+  }
+}

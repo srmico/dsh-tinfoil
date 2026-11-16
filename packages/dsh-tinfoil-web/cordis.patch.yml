@@ -1,0 +1,11 @@
+- insert:
+    - id: tinfoil-web
+      name: '@srmico/dsh-tinfoil-web'
+
+# Select the Tinfoil search/fetch providers on the shared web seam. The base
+# row may be absent in sdk-minimal; this warning is expected there.
+- id: web
+  name: '@deepseek-ai/dsh-web'
+  config:
+    searchProvider: tinfoil
+    fetchProvider: tinfoil

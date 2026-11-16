@@ -1,0 +1,102 @@
+name: CI
+
+on:
+  push:
+    branches: ['**']
+  workflow_dispatch:
+    inputs:
+      pr:
+        description: Optional PR number to test instead of the selected branch
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.event.inputs.pr || github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: '24.22.1'
+  PNPM_VERSION: '11.27.0'
+
+jobs:
+  verify:
+    if: ${{ github.event_name == 'workflow_dispatch' || endsWith(github.actor, '[bot]') == false }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Resolve checkout ref
+        id: checkout-ref
+        env:
+          PR: ${{ github.event.inputs.pr }}
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ] && [ -n "$PR" ]; then
+            case "$PR" in
+              *[!0-9]*)
+                echo "pr must be a numeric pull request number" >&2
+                exit 1
+                ;;
+            esac
+            echo "ref=refs/pull/$PR/head" >> "$GITHUB_OUTPUT"
+          else
+            echo "ref=$GITHUB_REF" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ steps.checkout-ref.outputs.ref }}
+          fetch-depth: 1
+          persist-credentials: false
+
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          package-manager-cache: false
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile --ignore-scripts
+
+      - name: Check root dependency pins
+        run: |
+          node -e '
+            const fs = require("node:fs");
+            const root = require("./package.json");
+            for (const dir of fs.readdirSync("packages")) {
+              const manifest = JSON.parse(fs.readFileSync(`packages/${dir}/package.json`, "utf8"));
+              if (manifest.version !== root.version) {
+                console.error(`${manifest.name}: ${manifest.version} does not equal ${root.version}`);
+                process.exit(1);
+              }
+            }
+            for (const [name, version] of Object.entries(root.dependencies)) {
+              if (version !== root.version) {
+                console.error(`${name}: ${version} does not equal ${root.version}`);
+                process.exit(1);
+              }
+            }
+          '
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Build
+        run: pnpm build
+
+      - name: Validate package payloads
+        run: |
+          mkdir -p .tmp
+          pnpm -r --include-workspace-root --filter='!@srmico/dsh-tinfoil-lib' pack --dry-run > .tmp/pack.txt
+          test "$(grep -c '^package: ' .tmp/pack.txt)" -eq 8
+          if grep -Eq '^(src/|node_modules/|tsconfig.*\.json$|tsdown\.config\.|.*\.map$)' .tmp/pack.txt; then
+            echo "unexpected files in package payload:" >&2
+            grep -E '^(src/|node_modules/|tsconfig.*\.json$|tsdown\.config\.|.*\.map$)' .tmp/pack.txt >&2
+            exit 1
+          fi
+          echo "package payloads validated"

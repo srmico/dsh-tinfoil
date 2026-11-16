@@ -1,0 +1,3 @@
+- insert:
+    - id: tinfoil-audio
+      name: '@srmico/dsh-tinfoil-audio'

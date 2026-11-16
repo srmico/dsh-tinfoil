@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Tinfoil documents">
+  <rect width="64" height="64" rx="14" fill="#0f172a"/>
+  <path d="M20 12h16l10 10v30a4 4 0 0 1-4 4H20a4 4 0 0 1-4-4V16a4 4 0 0 1 4-4z" fill="#e2e8f0"/>
+  <path d="M36 12v8a2 2 0 0 0 2 2h8z" fill="#94a3b8"/>
+  <path d="M24 30h16M24 36h16M24 42h10" stroke="#0ea5e9" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

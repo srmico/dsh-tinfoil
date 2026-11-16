@@ -1,0 +1,3 @@
+- insert:
+    - id: tinfoil-verification
+      name: '@srmico/dsh-tinfoil-verification'

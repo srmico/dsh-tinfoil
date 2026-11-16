@@ -1,0 +1,77 @@
+{
+  "name": "@srmico/dsh-tinfoil-audio",
+  "version": "0.1.0",
+  "description": "Tinfoil audio transcription and speech plugin for DeepSeek Harness",
+  "type": "module",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "icon": "./icon.svg",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/srmico/dsh-tinfoil.git",
+    "directory": "packages/dsh-tinfoil-audio"
+  },
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./package.json": "./package.json",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "files": [
+    "LICENSE",
+    "lib",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "README.md"
+  ],
+  "engines": {
+    "node": "^24.22.1 || >=26.12.1",
+    "dsh": ">=0.2.2-rc.1 <0.3.0"
+  },
+  "dependencies": {
+    "@deepseek-ai/schemastery": "^3.19.0",
+    "tinfoil": "^1.4.0"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.1.0",
+    "@deepseek-ai/dsh-attachment": "^0.2.2-rc.1",
+    "@deepseek-ai/dsh-fs": "^0.2.2-rc.1",
+    "@deepseek-ai/dsh-llm": "^0.2.2-rc.1",
+    "@deepseek-ai/dsh-tools": "^0.2.2-rc.1",
+    "@deepseek-ai/dsh-working-directory": "^0.2.2-rc.1"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/dsh-attachment": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@deepseek-ai/cordis": "^4.1.0",
+    "@deepseek-ai/dsh-attachment": "^0.2.2-rc.1",
+    "@deepseek-ai/dsh-fs": "^0.2.2-rc.1",
+    "@deepseek-ai/dsh-llm": "^0.2.2-rc.1",
+    "@deepseek-ai/dsh-tools": "^0.2.2-rc.1",
+    "@deepseek-ai/dsh-working-directory": "^0.2.2-rc.1",
+    "@srmico/dsh-tinfoil-lib": "workspace:*",
+    "@types/node": "^26.6.6",
+    "typescript": "^6.0.3"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json --noEmit && tsdown",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  }
+}

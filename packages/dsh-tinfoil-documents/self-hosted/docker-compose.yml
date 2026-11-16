@@ -1,0 +1,78 @@
+name: tinfoil-doc-upload
+
+# Keep services out of a shared pod so doc-parser stays networkless under podman-compose.
+x-podman:
+  in_pod: false
+
+services:
+  doc-parser:
+    # Pinned upstream image 0.0.40 (commit 814f7d3), linux/amd64 only.
+    image: ghcr.io/tinfoilsh/confidential-doc-upload@sha256:4637a6e5358f8ac80478acf516bf705971b1673d1e2aa022dfe6d66a3d8ff487
+    platform: linux/amd64
+    command: ["/usr/local/bin/parserd"]
+    user: "65532:65532"
+    network_mode: "none"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    ipc: none
+    mem_limit: ${DOC_PARSER_MEMORY:-2g}
+    cpus: ${DOC_PARSER_CPUS:-2}
+    pids_limit: 64
+    restart: unless-stopped
+    volumes:
+      - parser-socket:/run/docparser
+    environment:
+      PARSER_SOCKET: /run/docparser/parser.sock
+      PARSER_TIMEOUT_SECONDS: "120"
+      PARSER_MEMORY_LIMIT_MB: "1024"
+      PARSER_MAX_OUTPUT_MB: "256"
+      PARSER_WORKERS: "1"
+    healthcheck:
+      test: ["CMD", "/usr/local/bin/healthcheck", "--unix-socket=/run/docparser/parser.sock", "http://parser/health"]
+      interval: 30s
+      timeout: 5s
+      start_period: 30s
+      retries: 3
+
+  doc-upload:
+    image: ghcr.io/tinfoilsh/confidential-doc-upload@sha256:4637a6e5358f8ac80478acf516bf705971b1673d1e2aa022dfe6d66a3d8ff487
+    platform: linux/amd64
+    user: "65533:65532"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    ipc: none
+    mem_limit: ${DOC_ROUTER_MEMORY:-2g}
+    cpus: ${DOC_ROUTER_CPUS:-2}
+    pids_limit: 128
+    restart: unless-stopped
+    depends_on:
+      doc-parser:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:${DOC_UPLOAD_PORT:-5000}:5000"
+    volumes:
+      - parser-socket:/run/docparser
+    environment:
+      ROUTER_PORT: "5000"
+      PARSER_SOCKET: /run/docparser/parser.sock
+      PARSER_MAX_OUTPUT_MB: "256"
+      MAX_FILE_SIZE_MB: "50"
+      MAX_FILES: "1"
+      MAX_PARALLEL: "2"
+      MAX_ACTIVE_REQUESTS: "1"
+      MAX_QUEUED_REQUESTS: "2"
+      VLM_MODEL: ${VLM_MODEL:-gemma4-31b}
+      TINFOIL_API_KEY: ${TINFOIL_API_KEY:-}
+    healthcheck:
+      test: ["CMD", "/usr/local/bin/healthcheck", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 5s
+      start_period: 30s
+      retries: 3
+
+volumes:
+  parser-socket:

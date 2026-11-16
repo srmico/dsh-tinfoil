@@ -1,0 +1,3 @@
+- insert:
+    - id: tinfoil-documents
+      name: '@srmico/dsh-tinfoil-documents'

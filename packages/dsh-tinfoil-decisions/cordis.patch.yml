@@ -1,0 +1,3 @@
+- insert:
+    - id: tinfoil-decisions
+      name: '@srmico/dsh-tinfoil-decisions'

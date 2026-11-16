@@ -1,0 +1,55 @@
+{
+  "name": "@srmico/dsh-tinfoil",
+  "version": "0.1.0",
+  "description": "Tinfoil integration bundles for DeepSeek Harness",
+  "type": "module",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "icon": "./icon.svg",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/srmico/dsh-tinfoil.git"
+  },
+  "files": [
+    "LICENSE",
+    "cordis.patch.yml",
+    "icon.svg",
+    "locale/*.json",
+    "README.md"
+  ],
+  "exports": {
+    "./package.json": "./package.json",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "engines": {
+    "node": "^24.22.1 || >=26.12.1",
+    "dsh": ">=0.2.2-rc.1 <0.3.0"
+  },
+  "dependencies": {
+    "@srmico/dsh-tinfoil-audio": "0.1.0",
+    "@srmico/dsh-tinfoil-decisions": "0.1.0",
+    "@srmico/dsh-tinfoil-documents": "0.1.0",
+    "@srmico/dsh-tinfoil-pii": "0.1.0",
+    "@srmico/dsh-tinfoil-provider": "0.1.0",
+    "@srmico/dsh-tinfoil-verification": "0.1.0",
+    "@srmico/dsh-tinfoil-web": "0.1.0"
+  },
+  "devDependencies": {
+    "tsdown": "^0.23.7",
+    "typescript": "^6.0.3"
+  },
+  "packageManager": "pnpm@11.27.0",
+  "scripts": {
+    "build": "pnpm --filter @srmico/dsh-tinfoil-lib build && pnpm -r --filter=!@srmico/dsh-tinfoil-lib build",
+    "typecheck": "pnpm --filter @srmico/dsh-tinfoil-lib build && pnpm -r typecheck"
+  }
+}

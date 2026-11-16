@@ -1,0 +1,12 @@
+name: tinfoil-proxy
+
+services:
+  tinfoil-proxy:
+    # Pinned upstream release 0.2.9 (multi-arch index digest).
+    image: ghcr.io/tinfoilsh/tinfoil-proxy@sha256:f3ce666ab225af0cf38134861995a5c148084c1d93d0c1db2f183392323ebcb3
+    ports:
+      - "127.0.0.1:${TINFOIL_PROXY_PORT:-3301}:3301"
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
