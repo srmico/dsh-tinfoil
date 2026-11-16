@@ -1,0 +1,3 @@
+- insert:
+    - id: tinfoil-provider
+      name: '@srmico/dsh-tinfoil-provider'

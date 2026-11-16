@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Tinfoil PII redaction",
+    "description": "Redact strings or UTF-8 text files through an attested Tinfoil privacy filter."
+  }
+}

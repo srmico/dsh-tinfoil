@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Tinfoil web search",
+    "description": "Search the web and fetch pages through Tinfoil's attested websearch enclave, or an Exa/local MCP endpoint."
+  }
+}

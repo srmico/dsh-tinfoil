@@ -1,0 +1,21 @@
+- insert:
+    - id: tinfoil-documents
+      name: '@srmico/dsh-tinfoil-documents'
+    - id: tinfoil-pii
+      name: '@srmico/dsh-tinfoil-pii'
+    - id: tinfoil-decisions
+      name: '@srmico/dsh-tinfoil-decisions'
+    - id: tinfoil-audio
+      name: '@srmico/dsh-tinfoil-audio'
+    - id: tinfoil-provider
+      name: '@srmico/dsh-tinfoil-provider'
+    - id: tinfoil-web
+      name: '@srmico/dsh-tinfoil-web'
+    - id: tinfoil-verification
+      name: '@srmico/dsh-tinfoil-verification'
+
+- id: web
+  name: '@deepseek-ai/dsh-web'
+  config:
+    searchProvider: tinfoil
+    fetchProvider: tinfoil

@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Tinfoil integration",
+    "description": "Attested Tinfoil document extraction, PII redaction, decision outputs, audio transcription/speech, web search/fetch, and model routing for DeepSeek Harness, with a per-plugin verification center and composer status-bar attestation lock."
+  }
+}

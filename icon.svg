@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Tinfoil integration">
+  <rect width="64" height="64" rx="14" fill="#0f172a"/>
+  <path d="M32 9 51 17v14.5C51 43 43 51.5 32 56 21 51.5 13 43 13 31.5V17z" fill="#e2e8f0"/>
+  <path d="M32 17 44 22v9.5C44 39 38.7 44.5 32 47.5 25.3 44.5 20 39 20 31.5V22z" fill="#0ea5e9"/>
+  <path d="M26 30h12M26 35h8" stroke="#f8fafc" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

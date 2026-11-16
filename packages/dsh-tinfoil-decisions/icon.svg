@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Tinfoil decisions">
+  <rect width="64" height="64" rx="14" fill="#0f172a"/>
+  <path d="M32 9 51 17v14.5C51 43 43 51.5 32 56 21 51.5 13 43 13 31.5V17z" fill="#e2e8f0"/>
+  <path d="M32 17 44 22v9.5C44 39 38.7 44.5 32 47.5 25.3 44.5 20 39 20 31.5V22z" fill="#0ea5e9"/>
+  <g fill="#0f172a">
+    <rect x="25" y="35" width="3.5" height="7" rx="1"/>
+    <rect x="30.25" y="30" width="3.5" height="12" rx="1"/>
+    <rect x="35.5" y="25" width="3.5" height="17" rx="1"/>
+  </g>
+</svg>

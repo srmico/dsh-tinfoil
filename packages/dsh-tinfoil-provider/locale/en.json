@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Tinfoil model provider",
+    "description": "Route model calls to Tinfoil's attested inference enclave."
+  }
+}

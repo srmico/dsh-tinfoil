@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Tinfoil web search">
+  <rect width="64" height="64" rx="14" fill="#0f172a"/>
+  <circle cx="30" cy="28" r="14" fill="none" stroke="#e2e8f0" stroke-width="4"/>
+  <path d="M30 14a14 14 0 0 1 0 28M30 14a22 22 0 0 1 0 28M16 28h28" fill="none" stroke="#94a3b8" stroke-width="2"/>
+  <path d="M39 40l9 9" fill="none" stroke="#e2e8f0" stroke-width="4" stroke-linecap="round"/>
+</svg>

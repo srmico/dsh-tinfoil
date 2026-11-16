@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Tinfoil model provider">
+  <rect width="64" height="64" rx="14" fill="#0f172a"/>
+  <path d="M32 8 52 16.5v15C52 43 43.5 52 32 57 20.5 52 12 43 12 31.5v-15z" fill="#e2e8f0"/>
+  <path d="M32 16 45 22v10c0 8.5-5.5 14.5-13 17.8C24.5 46.5 19 40.5 19 32V22z" fill="#0ea5e9"/>
+  <rect x="24" y="27" width="16" height="11" rx="2.5" fill="#f8fafc"/>
+  <path d="M28 38v4l4.5-4z" fill="#f8fafc"/>
+  <circle cx="28" cy="32" r="1.4" fill="#0ea5e9"/>
+  <circle cx="32" cy="32" r="1.4" fill="#0ea5e9"/>
+  <circle cx="36" cy="32" r="1.4" fill="#0ea5e9"/>
+</svg>
