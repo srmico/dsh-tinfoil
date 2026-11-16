@@ -1,0 +1,14 @@
+.direnv
+.dsh
+.opencode
+.xdg
+node_modules
+lib/
+*.tsbuildinfo
+.tmp/
+coverage/
+dist/
+.env
+.env.*
+!.env.example
+.tinfoil-api-key
