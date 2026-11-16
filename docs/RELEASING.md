@@ -89,7 +89,9 @@ Tag pushes do not start a workflow. Create and push the tag, then dispatch the r
 gh workflow run release.yml --ref main -f tag=v0.1.0
 ```
 
-The workflow file comes from `main`; the build checks out the requested tag.
+The workflow file comes from `main`; the build checks out the requested tag. The environment's
+deployment branch rule must allow `main`, because that is the workflow ref GitHub evaluates; a
+tag-only rule would block the publish job.
 
 Jobs:
 
@@ -135,8 +137,9 @@ npm Trusted Publishing cannot create a package's first version. Bootstrap `0.1.0
 workflow-built tarballs:
 
 1. Apply the committed [repository rulesets](../.github/rulesets/README.md) for `main` and `v*`, and
-   configure the `npm-publish` environment with required reviewers and a `v*` tag deployment rule
-   before pushing the tag.
+   configure the `npm-publish` environment with required reviewers and a **`main` branch** deployment
+   rule before pushing the tag. The release workflow is dispatched from `main`; the tag is an input
+   checked out by the build job, so a `v*` tag-only environment rule would block the publish job.
 2. Commit/push `0.1.0`; the maintainer push runs CI.
 3. Create and push tag `v0.1.0`; this starts nothing.
 4. Dispatch the release:
@@ -150,10 +153,13 @@ workflow-built tarballs:
    gh run download <run-id> --name dsh-tinfoil-npm-tarballs --dir dist
    ```
 7. Bootstrap-publish those exact tarballs with a short-lived classic npm automation token or
-   interactive OTP. Publish plugins first and the root last. Use `npm publish <tarball> --tag latest
-   --ignore-scripts`, without `--provenance`. Revoke the token immediately afterwards.
+   interactive OTP. Publish plugins first and the root last. Use `npm publish ./dist/<tarball> --tag
+   latest --ignore-scripts` — the leading `./` matters, because npm otherwise interprets a bare
+   `dist/...` path as a GitHub package shorthand. Do not pass `--provenance`. Revoke the token
+   immediately afterwards.
 8. Add a Trusted Publisher rule for each of the eight packages: GitHub Actions, owner `srmico`,
-   repository `dsh-tinfoil`, workflow `release.yml`, npm environment blank.
+   repository `dsh-tinfoil`, workflow `release.yml`, environment `npm-publish` (the npm environment
+   field may be left blank, but `npm-publish` binds it to the approved environment).
 9. Approve `npm-publish`. The job skips already-published versions, then the release job attaches the
    same artifact.
 
@@ -189,7 +195,8 @@ channel. Prereleases install with `@srmico/dsh-tinfoil@next`.
 - Apply the committed [repository rulesets](../.github/rulesets/README.md): `main` is protected from
   force-pushes/deletions, and `v*` tags are protected from updates/deletions.
 - `v*` tags protected; only maintainers can create or move them.
-- `npm-publish` environment has required reviewers and a `v*` deployment rule.
+- `npm-publish` environment has required reviewers and a `main` deployment branch rule; the `v*`
+  tag is validated by the build job and protected by the tag ruleset.
 - No dependency cache in CI; fresh pnpm store each run.
 - `pnpm install --frozen-lockfile --ignore-scripts`.
 - Third-party actions pinned to full commit SHAs; Dependabot updates them weekly.
@@ -205,5 +212,7 @@ channel. Prereleases install with `@srmico/dsh-tinfoil@next`.
 | Manual CI cannot run | The workflow file must exist on the selected ref; run it from `main` with `-f pr=<number>` |
 | Publish fails with 404/E404 | The npm Trusted Publisher repository/workflow settings do not match `release.yml` |
 | Publish fails with 403 | The version already exists or the npm account/token lacks permission |
+| Publish job does not wait for approval | Check `npm-publish` required reviewers, “Prevent self-review” (off for a solo maintainer), and administrator bypass (off) |
+| `npm publish` tries `git ls-remote ...tgz.git` | Use an absolute tarball path or prefix it with `./`; npm interpreted a bare relative `dist/...` path as a GitHub shorthand |
 | GitHub Release already exists | The release job uploads assets with `--clobber`; if the release is immutable, update it manually |
 | Pack validation reports source files | A package's `files` allowlist or build output is wrong; fix before tagging |

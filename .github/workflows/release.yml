@@ -258,7 +258,7 @@ jobs:
               continue
             fi
             base="${name#@}"
-            file="dist/${base//\//-}-$version.tgz"
+            file="$PWD/dist/${base//\//-}-$version.tgz"
             npm publish "$file" --tag "$DIST_TAG" --provenance --ignore-scripts
           done
 
