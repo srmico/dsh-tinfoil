@@ -4,6 +4,18 @@
   "description": "Tinfoil integration bundles for DeepSeek Harness",
   "type": "module",
   "license": "MIT",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "cordis",
+    "tinfoil",
+    "attestation",
+    "bundle",
+    "confidential-computing"
+  ],
+  "author": "srmico",
+  "homepage": "https://github.com/srmico/dsh-tinfoil#readme",
   "publishConfig": {
     "access": "public"
   },

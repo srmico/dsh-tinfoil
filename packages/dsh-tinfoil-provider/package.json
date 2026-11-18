@@ -4,6 +4,18 @@
   "description": "Tinfoil model provider plugin for DeepSeek Harness",
   "type": "module",
   "license": "MIT",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "tinfoil",
+    "attestation",
+    "llm",
+    "provider",
+    "inference"
+  ],
+  "author": "srmico",
+  "homepage": "https://github.com/srmico/dsh-tinfoil/blob/main/packages/dsh-tinfoil-provider/README.md",
   "publishConfig": {
     "access": "public"
   },
