@@ -4,6 +4,18 @@
   "description": "Tinfoil decision outputs plugin for DeepSeek Harness",
   "type": "module",
   "license": "MIT",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "tinfoil",
+    "attestation",
+    "decisions",
+    "probability",
+    "calibration"
+  ],
+  "author": "srmico",
+  "homepage": "https://github.com/srmico/dsh-tinfoil/blob/main/packages/dsh-tinfoil-decisions/README.md",
   "publishConfig": {
     "access": "public"
   },

@@ -4,6 +4,20 @@
   "description": "Tinfoil audio transcription and speech plugin for DeepSeek Harness",
   "type": "module",
   "license": "MIT",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "tinfoil",
+    "attestation",
+    "audio",
+    "transcription",
+    "speech",
+    "text-to-speech",
+    "voice"
+  ],
+  "author": "srmico",
+  "homepage": "https://github.com/srmico/dsh-tinfoil/blob/main/packages/dsh-tinfoil-audio/README.md",
   "publishConfig": {
     "access": "public"
   },

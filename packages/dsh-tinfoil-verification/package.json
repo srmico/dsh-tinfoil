@@ -4,6 +4,18 @@
   "description": "Tinfoil attestation registry and verification center for the DeepSeek Harness Web UI",
   "type": "module",
   "license": "MIT",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "tinfoil",
+    "attestation",
+    "verification",
+    "security",
+    "enclave"
+  ],
+  "author": "srmico",
+  "homepage": "https://github.com/srmico/dsh-tinfoil/blob/main/packages/dsh-tinfoil-verification/README.md",
   "publishConfig": {
     "access": "public"
   },

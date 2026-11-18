@@ -4,6 +4,21 @@
   "description": "Tinfoil document extraction plugin for DeepSeek Harness",
   "type": "module",
   "license": "MIT",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "tinfoil",
+    "attestation",
+    "documents",
+    "document-conversion",
+    "pdf",
+    "docx",
+    "pptx",
+    "xlsx"
+  ],
+  "author": "srmico",
+  "homepage": "https://github.com/srmico/dsh-tinfoil/blob/main/packages/dsh-tinfoil-documents/README.md",
   "publishConfig": {
     "access": "public"
   },

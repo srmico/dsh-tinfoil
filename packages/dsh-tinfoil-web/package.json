@@ -4,6 +4,18 @@
   "description": "Tinfoil web search and fetch providers for DeepSeek Harness",
   "type": "module",
   "license": "MIT",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "tinfoil",
+    "attestation",
+    "web-search",
+    "web-fetch",
+    "search"
+  ],
+  "author": "srmico",
+  "homepage": "https://github.com/srmico/dsh-tinfoil/blob/main/packages/dsh-tinfoil-web/README.md",
   "publishConfig": {
     "access": "public"
   },
